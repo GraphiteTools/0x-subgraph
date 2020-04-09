@@ -1,0 +1,36 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Staking
+    network: mainnet
+    source:
+      address: "0xa26e80e7Dea86279c6d778D702Cc413E6CFfA777"
+      abi: staking
+      startBlock: 8900000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - Pool
+        - Stake
+        - User
+      eventHandlers:
+        - event: StakingPoolCreated(bytes32,address,uint32)
+          handler: handleStakingPoolCreated
+        - event: EpochEnded(indexed uint256,uint256,uint256,uint256,uint256)
+          handler: handleEpochEnded
+        - event: RewardsPaid(indexed uint256,indexed bytes32,uint256,uint256)
+          handler: handleRewardsPaid
+        - event: Stake(indexed address,uint256)
+          handler: handleStake
+        - event: Unstake(indexed address,uint256)
+          handler: handleUnstake
+        - event: MoveStake(indexed address,uint256,uint8,indexed bytes32,uint8,indexed bytes32)
+          handler: handleMoveStake
+      abis:
+        - name: staking
+          file: ./abis/staking.json
+      file: ./src/main.ts

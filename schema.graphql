@@ -1,0 +1,38 @@
+type State @entity {
+	id: ID!
+	currentEpoch: BigInt!
+	epochs: [Epoch!]!
+	pools: [Pool!]!
+}
+
+type Epoch @entity {
+	id: ID!
+	fees: BigInt!
+	stake: BigInt!
+}
+
+type Pool @entity {
+	id: ID!
+	owner: Bytes!
+}
+
+type PoolEpoch @entity {
+	id: ID!
+	pool: Pool!
+	epoch: Epoch!
+	fees: BigInt!
+	stake: BigInt!
+}
+
+type Stake @entity {
+	id: ID!
+	user: User!
+	pool: Pool!
+	amount: BigInt!
+}
+
+type User @entity {
+	id: ID!
+	totalStake: BigInt!
+	stakes: [Stake!] @derivedFrom(field: "user")
+}
