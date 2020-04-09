@@ -1,5 +1,5 @@
 {
-  "name": "ZeroEx-Staking-subgraph",
+  "name": "0x-subgraph",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
