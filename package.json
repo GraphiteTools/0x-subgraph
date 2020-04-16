@@ -1,6 +1,12 @@
 {
   "name": "0x-subgraph",
-  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "description": "0x Subgraph",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GraphiteTools/0x-subgraph.git"
+  },
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
